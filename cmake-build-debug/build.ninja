@@ -55,6 +55,12 @@ build CMakeFiles/c_compiler.dir/main.cpp.o: CXX_COMPILER__c_compiler_unscanned_D
   OBJECT_DIR = CMakeFiles/c_compiler.dir
   OBJECT_FILE_DIR = CMakeFiles/c_compiler.dir
 
+build CMakeFiles/c_compiler.dir/include/lexer/lexer.cpp.o: CXX_COMPILER__c_compiler_unscanned_Debug /Users/robpatterson/Projects/c_compiler/include/lexer/lexer.cpp || cmake_object_order_depends_target_c_compiler
+  DEP_FILE = CMakeFiles/c_compiler.dir/include/lexer/lexer.cpp.o.d
+  FLAGS = -g -std=gnu++2b -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk -mmacosx-version-min=14.4 -fcolor-diagnostics
+  OBJECT_DIR = CMakeFiles/c_compiler.dir
+  OBJECT_FILE_DIR = CMakeFiles/c_compiler.dir/include/lexer
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target c_compiler
@@ -63,7 +69,7 @@ build CMakeFiles/c_compiler.dir/main.cpp.o: CXX_COMPILER__c_compiler_unscanned_D
 #############################################
 # Link the executable c_compiler
 
-build c_compiler: CXX_EXECUTABLE_LINKER__c_compiler_Debug CMakeFiles/c_compiler.dir/main.cpp.o
+build c_compiler: CXX_EXECUTABLE_LINKER__c_compiler_Debug CMakeFiles/c_compiler.dir/main.cpp.o CMakeFiles/c_compiler.dir/include/lexer/lexer.cpp.o
   FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk -mmacosx-version-min=14.4
   OBJECT_DIR = CMakeFiles/c_compiler.dir
   POST_BUILD = :

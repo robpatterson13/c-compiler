@@ -4,4 +4,6 @@ project(c_compiler)
 set(CMAKE_CXX_STANDARD 23)
 
 add_executable(c_compiler main.cpp
-        include/lexer/lexer.hpp)
+        include/lexer/lexer.hpp
+        include/lexer/token.hpp
+        include/lexer/lexer.cpp)
