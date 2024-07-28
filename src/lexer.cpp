@@ -5,10 +5,10 @@
 #include <string>
 #include <algorithm>
 
-#include "lexer.hpp"
+#include "../include/lexer/lexer.hpp"
 
 Token Lexer::tokenize_word() {
-    auto end_of_word = std::find(
+    const auto end_of_word = std::find_if(
         source_iter_,
         source_.end(),
         [](const char c) {
@@ -17,7 +17,7 @@ Token Lexer::tokenize_word() {
 
     std::string word{source_iter_, end_of_word};
 
-    source_iter_ = std::move(++end_of_word); // NOLINT - want to use move assignment
+    source_iter_ = end_of_word + 1;
 
     if (word == "int" || word == "return" || word == "void") {
         return { KEYWORD, word };
@@ -27,7 +27,7 @@ Token Lexer::tokenize_word() {
 }
 
 Token Lexer::tokenize_number() {
-    const auto end_of_number = std::find(
+    const auto end_of_number = std::find_if(
         source_iter_,
         source_.end(),
         [](const char c) {
