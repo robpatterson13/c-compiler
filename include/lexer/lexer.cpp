@@ -8,7 +8,7 @@
 #include "lexer.hpp"
 
 Token Lexer::tokenize_word() {
-    const auto end_of_word = std::find(
+    auto end_of_word = std::find(
         source_iter_,
         source_.end(),
         [](const char c) {
@@ -17,7 +17,7 @@ Token Lexer::tokenize_word() {
 
     std::string word{source_iter_, end_of_word};
 
-    source_iter_ = end_of_word + 1;
+    source_iter_ = std::move(++end_of_word); // NOLINT - want to use move assignment
 
     if (word == "int" || word == "return" || word == "void") {
         return { KEYWORD, word };
