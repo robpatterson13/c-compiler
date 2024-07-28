@@ -9,7 +9,9 @@
 #include <string>
 
 enum TokenType {
+    KEYWORD, IDENTIFIER, CONSTANT,
 
+    SEMICOLON, OPEN_PAREN, CLOSE_PAREN, OPEN_BRACE, CLOSE_BRACE
 };
 
 struct Token {
