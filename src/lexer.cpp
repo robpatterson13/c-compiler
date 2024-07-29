@@ -3,21 +3,17 @@
 //
 
 #include <string>
-#include <algorithm>
 
 #include "../include/lexer/lexer.hpp"
 
 Token Lexer::tokenize_word() {
-    const auto end_of_word = std::find_if(
-        source_iter_,
-        source_.end(),
-        [](const char c) {
-            return (std::isalnum(c) == 0) || (c != '_');
-        });
+    std::string word{};
 
-    std::string word{source_iter_, end_of_word};
-
-    source_iter_ = end_of_word + 1;
+    char c = *source_iter_;
+    while (c && std::isalnum(c)) {
+        word.push_back(c);
+        c = *(++source_iter_);
+    }
 
     if (word == "int" || word == "return" || word == "void") {
         return { KEYWORD, word };
@@ -27,16 +23,13 @@ Token Lexer::tokenize_word() {
 }
 
 Token Lexer::tokenize_number() {
-    const auto end_of_number = std::find_if(
-        source_iter_,
-        source_.end(),
-        [](const char c) {
-            return !std::isdigit(c);
-        });
+    std::string number{};
 
-    std::string number{source_iter_, end_of_number};
-
-    source_iter_ = end_of_number + 1;
+    char c = *source_iter_;
+    while (c && std::isdigit(c)) {
+        number.push_back(c);
+        c = *(++source_iter_);
+    }
 
     return { CONSTANT, number };
 }
@@ -62,27 +55,27 @@ Token Lexer::tokenize_symbol() {
 
 namespace utility {
     bool is_valid_symbol(const char c) {
-        return (c == '(' ||
-            c == ')' ||
-            c == '{' ||
-            c == '}' ||
-            c == ';');
+        return c == '(' || c == ')' || c == '{' || c == '}' || c == ';';
     }
 }
 
 std::vector<Token> Lexer::lex() {
     std::vector<Token> tokens{};
 
-    while (const auto& c = *source_iter_) {
-        if (std::isalpha(c) || (c != '_')) {
+    while (const auto c = *source_iter_) {
+        if (std::isspace(c)) {
+            ++source_iter_;
+        } else if (std::isalpha(c)) {
             tokens.push_back(tokenize_word());
         } else if (std::isdigit(c)) {
-            tokens.push_back((tokenize_number()));
+            tokens.push_back(tokenize_number());
         } else if (utility::is_valid_symbol(c)) {
             tokens.push_back(tokenize_symbol());
         }
         // throw error for unknown symbol here
     }
+
+    tokens.push_back({ EOF_T });
 
     return tokens;
 }

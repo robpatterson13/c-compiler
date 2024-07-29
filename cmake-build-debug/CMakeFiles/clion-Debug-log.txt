@@ -1,7 +1,8 @@
 /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/Applications/CLion.app/Contents/bin/ninja/mac/aarch64/ninja -G Ninja -S /Users/robpatterson/Projects/c_compiler -B /Users/robpatterson/Projects/c_compiler/cmake-build-debug
-CMake Error at CMakeLists.txt:24 (gtest_discover_tests):
-  gtest_discover_tests Function invoked with incorrect arguments for function
-  named: gtest_discover_tests
-
-
--- Configuring incomplete, errors occurred!
+-- Found Python: /Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/bin/python3.9 (found version "3.9.6") found components: Interpreter 
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE  
+-- Configuring done (1.6s)
+-- Generating done (0.0s)
+-- Build files have been written to: /Users/robpatterson/Projects/c_compiler/cmake-build-debug
