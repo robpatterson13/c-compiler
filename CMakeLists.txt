@@ -7,4 +7,5 @@ add_executable(c_compiler main.cpp
         include/lexer/lexer.hpp
         include/lexer/token.hpp
         src/lexer.cpp
-        lib/utility.hpp)
+        lib/utility.hpp
+        lib/debug.hpp)

@@ -21,4 +21,10 @@ namespace utility {
     }
 }
 
+namespace utility::debug {
+    template<typename T>
+    concept Exception = std::is_base_of_v<std::exception, T>;
+
+}
+
 #endif //UTILITY_HPP

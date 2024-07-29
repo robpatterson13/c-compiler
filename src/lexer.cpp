@@ -6,13 +6,14 @@
 
 #include "../include/lexer/lexer.hpp"
 #include "../lib/utility.hpp"
+#include "../lib/debug.hpp"
 
 Token Lexer::tokenize_word() {
-    auto word{utility::range_by_predicate<std::string>(
+    auto word{ utility::range_by_predicate<std::string>(
         source_iter_,
         [](const int c) {
             return std::isalnum(c);
-        })};
+        }) };
 
     if (word == "int" || word == "return" || word == "void") {
         return { KEYWORD, word };
@@ -22,11 +23,11 @@ Token Lexer::tokenize_word() {
 }
 
 Token Lexer::tokenize_number() {
-    auto number{utility::range_by_predicate<std::string>(
+    auto number{ utility::range_by_predicate<std::string>(
         source_iter_,
         [](const int c) {
             return std::isdigit(c);
-        })};
+        }) };
 
     return { CONSTANT, number };
 }
@@ -73,6 +74,14 @@ std::vector<Token> Lexer::lex() {
     }
 
     tokens.push_back({ EOF_T });
+
+#ifdef DEBUG_HPP
+    for (const auto& token : tokens) {
+        std::cout << token;
+        if (token != *tokens.cend()) std::cout << "\n";
+    }
+    std::cout << std::endl;
+#endif
 
     return tokens;
 }
