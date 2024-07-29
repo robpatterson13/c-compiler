@@ -6,5 +6,6 @@
 #define DEBUG_HPP
 
 #define DEBUG_LEXER
+#define DEBUG_PARSER
 
 #endif //DEBUG_HPP

@@ -22,6 +22,17 @@ struct Token {
     TokenType type;
     std::optional<std::string> value;
 
+    bool operator==(const Token& other) const {
+        if (value.has_value() && other.value.has_value()) {
+            return type == other.type && value.value() == other.value.value();
+        }
+        if (!value.has_value() && !other.value.has_value()) {
+            return type == other.type;
+        }
+
+        return false;
+    }
+
     friend std::ostream& operator<< (std::ostream& os, const Token& token) {
         std::string token_string;
 

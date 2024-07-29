@@ -16,7 +16,7 @@ public:
     [[nodiscard]] std::vector<Token> lex();
 private:
     std::string source_;
-    std::string::iterator source_iter_ = source_.begin();
+    std::string::iterator source_iter_{ source_.begin() };
 
     [[nodiscard]] Token tokenize_word();
     [[nodiscard]] Token tokenize_number();
