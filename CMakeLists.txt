@@ -6,4 +6,5 @@ set(CMAKE_CXX_STANDARD 23)
 add_executable(c_compiler main.cpp
         include/lexer/lexer.hpp
         include/lexer/token.hpp
-        src/lexer.cpp)
+        src/lexer.cpp
+        lib/utility.hpp)

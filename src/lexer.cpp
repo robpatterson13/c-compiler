@@ -5,15 +5,14 @@
 #include <string>
 
 #include "../include/lexer/lexer.hpp"
+#include "../lib/utility.hpp"
 
 Token Lexer::tokenize_word() {
-    std::string word{};
-
-    char c = *source_iter_;
-    while (c && std::isalnum(c)) {
-        word.push_back(c);
-        c = *(++source_iter_);
-    }
+    auto word{utility::range_by_predicate<std::string>(
+        source_iter_,
+        [](const int c) {
+            return std::isalnum(c);
+        })};
 
     if (word == "int" || word == "return" || word == "void") {
         return { KEYWORD, word };
@@ -23,13 +22,11 @@ Token Lexer::tokenize_word() {
 }
 
 Token Lexer::tokenize_number() {
-    std::string number{};
-
-    char c = *source_iter_;
-    while (c && std::isdigit(c)) {
-        number.push_back(c);
-        c = *(++source_iter_);
-    }
+    auto number{utility::range_by_predicate<std::string>(
+        source_iter_,
+        [](const int c) {
+            return std::isdigit(c);
+        })};
 
     return { CONSTANT, number };
 }
