@@ -20,7 +20,6 @@ private:
 
     [[nodiscard]] Token tokenize_word();
     [[nodiscard]] Token tokenize_number();
-    [[nodiscard]] Token tokenize_symbol();
 };
 
 #endif //LEXER_HPP

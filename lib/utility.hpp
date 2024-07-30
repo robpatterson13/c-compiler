@@ -7,6 +7,7 @@
 
 namespace utility {
     // Get subrange of container sequentially until predicate fails
+    // (!!!) Changes iterator ptr in place (!!!) don't expect const
     template<typename Container, typename Lambda>
     Container range_by_predicate(typename Container::iterator& iter, Lambda&& pred) {
         Container buf{};

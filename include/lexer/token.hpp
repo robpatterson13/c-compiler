@@ -10,8 +10,10 @@
 #include <iostream>
 #include <format>
 
-enum TokenType {
-    KEYWORD, IDENTIFIER, CONSTANT,
+enum class TokenType {
+    IDENTIFIER, CONSTANT,
+
+    KEYWORD,
 
     SEMICOLON, OPEN_PAREN, CLOSE_PAREN, OPEN_BRACE, CLOSE_BRACE,
 
@@ -37,31 +39,31 @@ struct Token {
         std::string token_string;
 
         switch (token.type) {
-            case KEYWORD:
+            case TokenType::KEYWORD:
                 token_string = std::vformat(std::string_view("Keyword({})"), std::make_format_args(token.value.value()));
                 break;
-            case IDENTIFIER:
+            case TokenType::IDENTIFIER:
                 token_string = std::vformat(std::string_view("Identifier({})"), std::make_format_args(token.value.value()));
                 break;
-            case CONSTANT:
+            case TokenType::CONSTANT:
                 token_string = std::vformat(std::string_view("Constant({})"), std::make_format_args(token.value.value()));
                 break;
-            case SEMICOLON:
+            case TokenType::SEMICOLON:
                 token_string = std::string("Semicolon");
                 break;
-            case OPEN_PAREN:
+            case TokenType::OPEN_PAREN:
                 token_string = std::string("Open_Paren");
                 break;
-            case CLOSE_PAREN:
+            case TokenType::CLOSE_PAREN:
                 token_string = std::string("Close_Paren");
                 break;
-            case OPEN_BRACE:
+            case TokenType::OPEN_BRACE:
                 token_string = std::string("Open_Brace");
                 break;
-            case CLOSE_BRACE:
+            case TokenType::CLOSE_BRACE:
                 token_string = std::string("Close_Brace");
                 break;
-            case EOF_T:
+            case TokenType::EOF_T:
                 token_string = std::string("EOF");
         }
 

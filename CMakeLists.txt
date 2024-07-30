@@ -11,4 +11,6 @@ add_executable(c_compiler main.cpp
         lib/debug.hpp
         include/parser/parser.hpp
         include/parser/ast.hpp
-        src/parser/parser.cpp)
+        src/parser/parser.cpp
+        include/lexer/token_helpers.hpp
+)
